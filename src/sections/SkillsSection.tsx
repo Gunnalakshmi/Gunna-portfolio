@@ -47,7 +47,7 @@ export const SkillsSection: React.FC = () => {
         <SectionHeader
           badge="02 // TECHNICAL MATRIX & NETWORK"
           title="INTERACTIVE SYSTEM CAPABILITIES & SKILLS"
-          subtitle="Explore the interconnected stack across full-stack software development, AI systems, cloud infrastructure, and 3D web technologies."
+          subtitle="AI/ML is my engineering foundation, with strong interests in frontend development, web experiences, and creative technology."
         />
 
         {/* Search & Category Filter Bar */}
@@ -112,17 +112,26 @@ export const SkillsSection: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
-                className="bg-surface-glass border border-white/10 hover:border-accent-cyan/30 rounded-2xl p-5 backdrop-blur-md flex flex-col justify-between shadow-lg group transition-all"
+                className={`bg-surface-glass border rounded-2xl p-5 backdrop-blur-md flex flex-col justify-between shadow-lg group transition-all ${
+                  cat.id === 'ai-ml' ? 'border-accent-purple/50 shadow-[0_0_20px_rgba(168,85,247,0.15)]' : 'border-white/10 hover:border-accent-cyan/30'
+                }`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
                     <div className="flex items-center gap-2">
-                      <div className="p-2 rounded-lg bg-surface-light text-accent-cyan border border-white/10">
+                      <div className={`p-2 rounded-lg border ${cat.id === 'ai-ml' ? 'bg-accent-purple/20 text-accent-purple border-accent-purple/40' : 'bg-surface-light text-accent-cyan border-white/10'}`}>
                         {categoryIcons[cat.icon]}
                       </div>
-                      <h3 className="text-base font-display font-bold text-white group-hover:text-accent-cyan transition-colors">
-                        {cat.name}
-                      </h3>
+                      <div>
+                        <h3 className="text-sm font-display font-bold text-white group-hover:text-accent-cyan transition-colors">
+                          {cat.name}
+                        </h3>
+                        {cat.id === 'ai-ml' && (
+                          <span className="text-[9px] font-mono text-accent-purple uppercase tracking-tight block">
+                            CORE FOUNDATION
+                          </span>
+                        )}
+                      </div>
                     </div>
                     <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-light text-slate-400">
                       {cat.skills.length} NODES
@@ -143,9 +152,21 @@ export const SkillsSection: React.FC = () => {
                         onMouseEnter={playHover}
                         className="p-2.5 rounded-xl bg-surface-light/30 border border-white/5 hover:border-accent-cyan/40 hover:bg-surface-light/60 transition-all cursor-pointer group/node"
                       >
-                        <div className="flex items-center justify-between text-xs font-mono text-slate-200 group-hover/node:text-accent-cyan mb-1.5">
-                          <span className="font-semibold truncate max-w-[150px]">{skill.name}</span>
-                          <span className="text-slate-400 text-[10px]">{skill.level}%</span>
+                        <div className="flex items-center justify-between text-xs font-mono text-slate-200 group-hover/node:text-accent-cyan mb-1.5 gap-2">
+                          <span className="font-semibold truncate">{skill.name}</span>
+                          {skill.levelTag ? (
+                            <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded font-bold uppercase tracking-wider shrink-0 ${
+                              skill.levelTag === 'Basics'
+                                ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                                : skill.levelTag === 'Learning'
+                                ? 'bg-purple-500/20 text-purple-300 border border-purple-500/40'
+                                : 'bg-accent-cyan/20 text-accent-cyan border border-accent-cyan/40'
+                            }`}>
+                              {skill.levelTag}
+                            </span>
+                          ) : (
+                            <span className="text-slate-400 text-[10px] shrink-0">{skill.level}%</span>
+                          )}
                         </div>
 
                         {/* Progress Bar Indicator */}
@@ -155,7 +176,13 @@ export const SkillsSection: React.FC = () => {
                             whileInView={{ width: `${skill.level}%` }}
                             viewport={{ once: true }}
                             transition={{ duration: 1, ease: 'easeOut' }}
-                            className="h-full bg-gradient-to-r from-accent-cyan to-accent-purple rounded-full"
+                            className={`h-full rounded-full ${
+                              skill.levelTag === 'Basics'
+                                ? 'bg-amber-400'
+                                : skill.levelTag === 'Learning'
+                                ? 'bg-purple-400'
+                                : 'bg-gradient-to-r from-accent-cyan to-accent-purple'
+                            }`}
                           />
                         </div>
                       </div>

@@ -1,9 +1,11 @@
 export interface SocialLinks {
   github: string;
   linkedin: string;
+  instagram: string;
   email: string;
+  phone: string;
   resume: string;
-  portfolio: string;
+  portfolio?: string;
   twitter?: string;
 }
 
@@ -13,7 +15,8 @@ export interface PersonalProfile {
   tagline: string;
   location: string;
   email: string;
-  phone?: string;
+  phone: string;
+  interests: string[];
   socials: SocialLinks;
   heroHeadline: string;
   heroSubtext: string;
@@ -25,17 +28,20 @@ export interface PersonalProfile {
   }[];
 }
 
+export interface SkillItem {
+  name: string;
+  level: number; // 1-100
+  levelTag?: string; // e.g. "Basics", "Learning", "Core"
+  description: string;
+  projectsCount?: number;
+}
+
 export interface SkillCategory {
   id: string;
   name: string;
   description: string;
   icon: string;
-  skills: {
-    name: string;
-    level: number; // 1-100
-    description: string;
-    projectsCount?: number;
-  }[];
+  skills: SkillItem[];
 }
 
 export interface CaseStudy {
@@ -62,7 +68,7 @@ export interface Project {
   githubUrl: string;
   liveUrl: string;
   featured: boolean;
-  category: 'Full-Stack' | 'AI / Systems' | '3D / Creative' | 'Cloud Architecture';
+  category: 'AI / ML' | 'Frontend & Web' | 'Creative Tech' | 'Systems';
   caseStudy?: CaseStudy;
 }
 
@@ -116,46 +122,46 @@ export const PORTFOLIO_DATA: {
   education: Education[];
 } = {
   profile: {
-    name: "[YOUR FULL NAME]",
-    title: "[Software Engineer | AI & Innovation Enthusiast]",
-    tagline: "I BUILD IDEAS INTO REALITY.",
-    location: "[YOUR LOCATION]",
-    email: "your.email@domain.com",
-    phone: "[YOUR PHONE NUMBER]",
+    name: "Cherukuri Gunna Lakshmi",
+    title: "AI/ML Engineer",
+    tagline: "Observe deeply. Understand the problem. Build the solution.",
+    location: "Faridabad, Haryana",
+    email: "gunalakshmi215@gmail.com",
+    phone: "9493791732",
+    interests: ["AI/ML", "Frontend Development", "Web Experiences", "Creative Technology"],
     socials: {
-      github: "https://github.com/yourusername",
-      linkedin: "https://linkedin.com/in/yourusername",
-      email: "mailto:your.email@domain.com",
-      resume: "#resume-download",
-      portfolio: "https://yourportfolio.com",
-      twitter: "https://twitter.com/yourusername",
+      github: "https://github.com/Gunnalakshmi",
+      linkedin: "https://www.linkedin.com/in/gunna-lakshmi-871154287/",
+      instagram: "https://www.instagram.com/guna_2005_28?igsi=czB2Zzk5ejh2emw3",
+      email: "mailto:gunalakshmi215@gmail.com",
+      phone: "tel:9493791732",
+      resume: "#resume-placeholder",
     },
-    heroHeadline: "I BUILD IDEAS INTO REALITY.",
-    heroSubtext: "Engineering scalable systems, immersive 3D digital experiences, and AI-driven solutions with precision and innovative product thinking.",
+    heroHeadline: "Observe deeply. Understand the problem. Build the solution.",
+    heroSubtext: "AI/ML engineering student passionate about turning observations into ideas and ideas into experiences across machine learning, frontend development, and creative technology.",
     aboutBio: [
-      "[PASTE YOUR BIO HERE - Paragraph 1: Describe your background, engineering mindset, passion for innovation, and approach to solving complex problems.]",
-      "[PASTE YOUR BIO HERE - Paragraph 2: Highlight your technical versatility across full-stack architecture, high-performance web graphics, and modern software design.]",
-      "[PASTE YOUR BIO HERE - Paragraph 3: Detail what drives your commitment to crafting polished, reliable, and high-impact digital products.]"
+      "I'm an AI/ML engineering student who enjoys turning observations into ideas and ideas into experiences. While my core interest lies in AI and machine learning, I'm equally drawn to frontend development, web experiences, and creative technology. I love experimenting with how technology can be presented—not just making something work, but making it intuitive, engaging, and visually meaningful.",
+      "I naturally start by observing a problem, understanding why it exists, and then exploring different ways to solve it. Whether I'm working with AI/ML, building a website, designing an interface, or experimenting with a creative concept, I enjoy learning by building and turning curiosity into something tangible."
     ],
     philosophyPillars: [
       {
-        title: "Engineering Excellence",
-        description: "Writing clean, scalable, maintainable code with modern architectural principles.",
-        icon: "Cpu"
-      },
-      {
-        title: "Product & Innovation",
-        description: "Bridging deep technical execution with user-centric design and intuitive UX.",
+        title: "Deep Observation",
+        description: "Observing situations and understanding why problems exist before building a solution.",
         icon: "Lightbulb"
       },
       {
-        title: "High Performance",
-        description: "Optimizing 3D rendering pipelines, WebGL canvas frames, and fast page loads.",
-        icon: "Zap"
+        title: "AI & ML Foundation",
+        description: "Exploring machine learning models, data patterns, NLP, and computer vision systems.",
+        icon: "Brain"
       },
       {
-        title: "Problem Solving",
-        description: "Deconstructing complex distributed constraints into elegant software solutions.",
+        title: "Creative Web Experiences",
+        description: "Making interfaces intuitive, visually meaningful, and engaging for users.",
+        icon: "Sparkles"
+      },
+      {
+        title: "Learning by Building",
+        description: "Turning curiosity and ideas into tangible working technology solutions.",
         icon: "Layers"
       }
     ]
@@ -164,98 +170,128 @@ export const PORTFOLIO_DATA: {
   skills: [
     {
       id: "programming",
-      name: "Programming",
-      description: "Core algorithms, strongly typed system architectures, and scripting languages.",
+      name: "PROGRAMMING",
+      description: "Core programming languages, algorithmic problem solving, and computer science foundations.",
       icon: "Code2",
       skills: [
-        { name: "TypeScript / JavaScript", level: 95, description: "Advanced ESNext, static type systems, generic design patterns" },
-        { name: "Python", level: 90, description: "Data structures, machine learning scripting, automation API engines" },
-        { name: "C++ / Rust", level: 78, description: "Systems programming, memory safety, WASM integration" },
-        { name: "Go", level: 82, description: "Concurrent backend services, microservices, high-throughput pipelines" }
+        { name: "C", level: 80, description: "Procedural programming, memory concepts, problem solving" },
+        { name: "Python", level: 85, description: "Core language for AI/ML models, data analysis, and backend scripting" },
+        { name: "Java", level: 50, levelTag: "Basics", description: "Basic syntax, OOP fundamentals, elementary structures" },
+        { name: "JavaScript", level: 80, description: "Dynamic web logic, DOM manipulation, async programming" },
+        { name: "SQL", level: 75, description: "Relational database queries, data manipulation, joins" },
+        { name: "HTML & CSS", level: 85, description: "Web structure, layout styling, responsive design" },
+        { name: "Data Structures & Algorithms", level: 55, levelTag: "Basics", description: "Basic arrays, lists, search, and sorting concepts" },
+        { name: "Object-Oriented Programming (OOP)", level: 60, levelTag: "Basics", description: "Classes, objects, inheritance, encapsulation basics" },
+        { name: "Problem Solving", level: 82, description: "Analytical approach to dissecting technical problems" },
+        { name: "Functional Programming", level: 70, description: "Pure functions, immutability, array transformations" }
       ]
     },
     {
       id: "frontend",
-      name: "Frontend",
-      description: "Modern, responsive, user-interface frameworks and dynamic web rendering engines.",
+      name: "FRONTEND",
+      description: "Core web standards, responsive UI design, component structures, and styling frameworks.",
       icon: "Layout",
       skills: [
-        { name: "React / Next.js", level: 96, description: "Server components, state management, SSR/SSG hydration" },
-        { name: "Tailwind CSS", level: 95, description: "Utility-first design systems, custom dark themes, responsive layouts" },
-        { name: "Vue / Nuxt", level: 85, description: "Reactivity engines, component architecture, performant SPA builds" },
-        { name: "HTML5 / CSS3 / SASS", level: 98, description: "Semantic web standards, CSS animations, flexible grid layouts" }
-      ]
-    },
-    {
-      id: "backend",
-      name: "Backend",
-      description: "Scalable server architectures, REST/GraphQL APIs, microservices, and queue management.",
-      icon: "Server",
-      skills: [
-        { name: "Node.js / Express / NestJS", level: 92, description: "Async runtime, event loops, middleware pipeline design" },
-        { name: "FastAPI / Django", level: 88, description: "Python backend services, OpenAPI specs, async endpoint handlers" },
-        { name: "GraphQL & REST APIs", level: 90, description: "Schema design, query optimization, rate-limiting, authentication" },
-        { name: "gRPC & Microservices", level: 82, description: "Protocol buffers, high-speed inter-service communications" }
+        { name: "HTML5", level: 88, description: "Semantic markups, accessibility, document structure" },
+        { name: "CSS3", level: 85, description: "Modern styling, Flexbox, Grid, custom properties" },
+        { name: "JavaScript", level: 80, description: "ES6+ syntax, async fetch, DOM interactions" },
+        { name: "Responsive Web Design", level: 88, description: "Mobile-first layouts, media queries, flexible viewports" },
+        { name: "CSS Flexbox & Grid", level: 90, description: "Complex two-dimensional and one-dimensional UI layouts" },
+        { name: "Tailwind CSS", level: 85, description: "Utility-first CSS styling, modern responsive designs" },
+        { name: "Bootstrap", level: 80, description: "Component UI framework, rapid responsive grids" },
+        { name: "Material UI", level: 75, description: "React material design component library integration" },
+        { name: "Component-Based Architecture", level: 80, description: "Modular UI breakdown and reusability" },
+        { name: "State Management & API Integration", level: 78, description: "Handling client state and asynchronous REST endpoints" },
+        { name: "Web Accessibility & UI/UX", level: 82, description: "Intuitive user experience implementation and ARIA accessibility" }
       ]
     },
     {
       id: "ai-ml",
-      name: "AI / ML",
-      description: "Machine learning integration, LLM orchestration, and intelligent system workflows.",
+      name: "AI / MACHINE LEARNING",
+      description: "Engineering foundation in machine learning algorithms, deep learning frameworks, NLP, and vision.",
       icon: "Brain",
       skills: [
-        { name: "PyTorch & TensorFlow", level: 84, description: "Model training, neural net evaluation, computer vision pipelines" },
-        { name: "LangChain / LlamaIndex", level: 86, description: "RAG architectures, vector store retrievers, agentic workflows" },
-        { name: "OpenAI / HuggingFace APIs", level: 90, description: "LLM fine-tuning, embeddings, streaming response pipelines" },
-        { name: "Vector Databases", level: 85, description: "Pinecone, Qdrant, ChromaDB vector indexing and hybrid search" }
+        { name: "Machine Learning", level: 88, levelTag: "Core Focus", description: "Core ML concepts, supervised & unsupervised workflows" },
+        { name: "Supervised & Unsupervised Learning", level: 85, description: "Regression, classification, clustering models" },
+        { name: "Feature Engineering & Preprocessing", level: 82, description: "Feature selection, data cleaning, normalization, hyperparameter tuning" },
+        { name: "NumPy & Pandas", level: 88, description: "Data manipulation, matrix math, tabular data structures" },
+        { name: "Matplotlib & Seaborn", level: 85, description: "Data visualization, statistical plotting, exploratory data analysis" },
+        { name: "Scikit-learn", level: 85, description: "Classical ML models, pipeline evaluation, model training" },
+        { name: "Neural Networks & Deep Learning", level: 80, description: "Perceptrons, dense layers, activation functions" },
+        { name: "TensorFlow, Keras & PyTorch", level: 80, description: "Deep learning model building, training loops, evaluation" },
+        { name: "Natural Language Processing (NLP)", level: 82, description: "Text classification, sentiment analysis, tokenization, transformers" },
+        { name: "Computer Vision & OpenCV", level: 80, description: "Image processing, object detection, face detection, classification" },
+        { name: "Generative AI & LLMs", level: 82, description: "Prompt engineering, AI APIs, chatbot architectures, predictive analytics" }
       ]
     },
     {
-      id: "creative-3d",
-      name: "3D / Creative Dev",
-      description: "WebGL canvas rendering, Three.js scenes, shaders, and real-time graphics.",
-      icon: "Sparkles",
+      id: "backend",
+      name: "BACKEND",
+      description: "Server-side logic, API development, RESTful routing, and backend frameworks.",
+      icon: "Server",
       skills: [
-        { name: "Three.js / React Three Fiber", level: 92, description: "PBR material shaders, lighting, 3D geometry manipulation, camera lerp" },
-        { name: "GLSL / Shaders", level: 80, description: "Custom vertex/fragment shaders, procedural noise generation" },
-        { name: "Framer Motion & GSAP", level: 94, description: "Timeline animations, scroll triggers, magnetic micro-interactions" },
-        { name: "Blender / 3D Asset Prep", level: 78, description: "Low-poly mesh optimization, GLTF/GLB export compression" }
-      ]
-    },
-    {
-      id: "cloud-devops",
-      name: "Cloud / DevOps",
-      description: "Automated deployment pipelines, containerization, serverless, and infrastructure.",
-      icon: "Cloud",
-      skills: [
-        { name: "Docker & Kubernetes", level: 88, description: "Containerized environments, image multi-staging, orchestration" },
-        { name: "AWS / Vercel / GCP", level: 90, description: "Serverless lambda compute, S3 assets, CloudFront CDN edge routes" },
-        { name: "CI/CD & GitHub Actions", level: 92, description: "Automated test suites, build pipelines, production release triggers" },
-        { name: "Terraform / IaC", level: 80, description: "Infrastructure as code provisioning, multi-region architecture" }
+        { name: "Python & Java", level: 80, description: "Server-side execution runtimes and language handlers" },
+        { name: "FastAPI & Flask", level: 80, description: "Lightweight Python REST API framework development" },
+        { name: "Django", level: 75, description: "Full-featured Python web framework architecture" },
+        { name: "Express.js", level: 75, description: "Node.js server-side web application routing" },
+        { name: "REST API Development & Integration", level: 82, description: "Designing endpoint contracts, JSON payloads, HTTP status codes" },
+        { name: "Authentication & Authorization", level: 75, description: "User credentials validation, CRUD operations, route security" },
+        { name: "JSON & HTTP / HTTPS Protocols", level: 85, description: "Request/response cycles, API testing, backend request flows" }
       ]
     },
     {
       id: "databases",
-      name: "Databases",
-      description: "Relational, document, key-value, and distributed data store systems.",
+      name: "DATABASES",
+      description: "Relational database systems, SQL querying, data modeling, and document stores.",
       icon: "Database",
       skills: [
-        { name: "PostgreSQL", level: 92, description: "Complex SQL queries, index optimization, JSONB storage, migrations" },
-        { name: "MongoDB", level: 88, description: "Document schemas, aggregation frameworks, replica set clustering" },
-        { name: "Redis", level: 90, description: "In-memory caching layer, pub/sub queues, session state management" },
-        { name: "Prisma / Supabase / ORMs", level: 94, description: "Type-safe database ORM layer, row-level security policy design" }
+        { name: "MySQL & SQLite", level: 80, description: "Relational table schemas, structured query execution" },
+        { name: "Oracle & SQL Server", level: 75, description: "Enterprise relational database management systems" },
+        { name: "MongoDB", level: 55, levelTag: "Basics", description: "Basic document collection concepts and CRUD queries" },
+        { name: "Database Design & Data Modeling", level: 78, description: "Entity relationships, table normalization, primary/foreign keys" },
+        { name: "SQL Joins, Indexing & Optimization", level: 78, description: "Query optimization, indexing strategies, complex table joins" }
+      ]
+    },
+    {
+      id: "cloud-devops",
+      name: "CLOUD / DEVOPS",
+      description: "Version control workflows, cloud platforms, containerization basics, and app deployment.",
+      icon: "Cloud",
+      skills: [
+        { name: "Git & GitHub", level: 88, description: "Source code version control, branching, repository management" },
+        { name: "Vercel, Netlify & Render", level: 85, description: "Automated cloud application deployment and web hosting" },
+        { name: "AWS, Azure & GCP", level: 75, description: "Cloud computing infrastructure services and compute instances" },
+        { name: "GitHub Actions & CI/CD", level: 75, description: "Basic automated build and deployment workflows" },
+        { name: "Linux", level: 55, levelTag: "Learning", description: "Learning terminal commands, file systems, and bash scripting" },
+        { name: "Environment Variables & Deployment", level: 82, description: "Configuring env secrets, domain DNS, SSL HTTPS setup" }
+      ]
+    },
+    {
+      id: "design-creative",
+      name: "DESIGN / CREATIVE",
+      description: "UI/UX visual design, prototyping, creative graphics, and visual storytelling.",
+      icon: "Sparkles",
+      skills: [
+        { name: "UI & UX Design", level: 85, description: "User interface layouts, design systems, visual hierarchy" },
+        { name: "Prototyping & Visual Design", level: 82, description: "Interactive mockup wireframes, responsive screen designs" },
+        { name: "Figma & Canva", level: 88, description: "Digital design, prototype creation, asset graphics" },
+        { name: "Adobe Photoshop", level: 80, description: "Raster graphics editing, photo manipulation, visual assets" },
+        { name: "After Effects & Premiere Pro", level: 78, description: "Video editing, motion graphics, visual storytelling" },
+        { name: "Graphic Design & Brand Design", level: 82, description: "Visual branding, typography, creative assets" }
       ]
     },
     {
       id: "tools",
-      name: "Tools & Ecosystem",
-      description: "Version control, development tooling, system monitoring, and design handoff.",
+      name: "DEVELOPMENT TOOLS",
+      description: "Essential software development tools, IDEs, code editors, and data notebooks.",
       icon: "Wrench",
       skills: [
-        { name: "Git & GitHub Workflow", level: 98, description: "Branching strategies, rebase workflows, code review standards" },
-        { name: "Figma & UI Handoff", level: 88, description: "Design system tokens, interactive prototypes, component specs" },
-        { name: "Vite / Webpack / Turbopack", level: 92, description: "Module bundling, hot module replacement, asset chunking" },
-        { name: "Postman / Bruno API Test", level: 94, description: "Automated endpoint testing suites and environment mocks" }
+        { name: "VS Code & Antigravity", level: 90, description: "Primary code editing IDEs and AI development environments" },
+        { name: "Git, GitHub & GitHub Desktop", level: 88, description: "Version control tools and GUI client workflow management" },
+        { name: "Jupyter Notebook & Google Colab", level: 88, description: "Interactive Python notebook environments for AI/ML experiments" },
+        { name: "npm & Node Package Manager", level: 82, description: "Package dependency management and script execution" },
+        { name: "Chrome DevTools", level: 85, description: "Browser DOM inspection, network debugging, console profiling" },
+        { name: "Figma & Canva", level: 88, description: "Interface design tools and asset preparation" }
       ]
     }
   ],
@@ -263,100 +299,63 @@ export const PORTFOLIO_DATA: {
   projects: [
     {
       id: "project-01",
-      title: "[PROJECT 01 NAME]",
-      tagline: "[ONE-LINE DESCRIPTION OF PROJECT 01]",
-      description: "An innovative, high-performance application built to solve complex domain challenges with modern full-stack architecture.",
-      problem: "[DESCRIBE THE PROBLEM THAT THIS PROJECT SOLVED]",
-      solution: "[DESCRIBE YOUR SOLUTION AND TECHNICAL APPROACH]",
-      technologies: ["React", "TypeScript", "Three.js", "Node.js", "Tailwind CSS", "PostgreSQL"],
-      contribution: "[EXPLAIN YOUR SPECIFIC CONTRIBUTION TO THIS PROJECT]",
-      impact: "[HIGHLIGHT THE MEASURABLE RESULTS, SPEED GAINS, OR USER ADOPTION IMPACT]",
-      githubUrl: "https://github.com/yourusername/project-01",
-      liveUrl: "https://project01-demo.com",
+      title: "AI / ML & Computer Vision Explorer",
+      tagline: "Intelligent machine learning and vision analysis model pipeline",
+      description: "An AI/ML exploratory system focused on computer vision, feature extraction, and predictive analytics.",
+      problem: "Interpreting complex unstructured dataset patterns requires systematic feature preprocessing and model evaluation.",
+      solution: "Developed Python ML pipelines utilizing Scikit-learn, OpenCV, and neural network architectures for accurate predictions.",
+      technologies: ["Python", "Machine Learning", "OpenCV", "Scikit-learn", "TensorFlow"],
+      contribution: "Designed data preprocessing pipelines, model hyperparameter tuning, and computer vision feature extraction.",
+      impact: "Achieved high classification accuracy across test evaluation benchmarks.",
+      githubUrl: "https://github.com/Gunnalakshmi",
+      liveUrl: "#project-demo",
       featured: true,
-      category: "Full-Stack",
+      category: "AI / ML",
       caseStudy: {
-        problem: "Legacy systems struggled with real-time state synchronization, leading to latency spikes above 800ms and fragmented data views.",
-        research: "Evaluated WebSocket fallback transport strategies, binary serialization via Protocol Buffers, and client-side web worker state caching.",
-        idea: "Architected a dual-engine platform utilizing reactive edge subscriptions for live updates paired with an interactive 3D visual workspace.",
-        architecture: "React + R3F UI Layer -> WebSocket Gateway -> Microservices Broker -> Redis Sub/Pub -> PostgreSQL Distributed Storage.",
-        implementation: "Constructed custom state sync hooks, optimized GLTF model chunk loading, and built zero-layout-shift UI component pipelines.",
-        innovation: "Designed a lightweight procedural canvas buffer that reduced GPU memory overhead by 45% while preserving visual fidelity.",
+        problem: "Unstructured image and text data required systematic feature engineering and clean model evaluation pipelines.",
+        research: "Evaluated feature selection methods, supervised classification algorithms, and convolutional model layer setups.",
+        idea: "Constructed an end-to-end Python AI pipeline from raw data preprocessing to visualization and model evaluation.",
+        architecture: "Python Data Source -> Pandas/NumPy Pipeline -> Scikit-learn/TensorFlow Models -> Matplotlib Evaluation.",
+        implementation: "Implemented image preprocessing via OpenCV, automated feature scaling, and neural network training loops.",
+        innovation: "Integrated custom feature selection logic to improve prediction metrics while keeping training lightweight.",
         results: [
-          "Reduced end-to-end telemetry latency from 800ms to <45ms.",
-          "Increased concurrent active user throughput by 3.5x.",
-          "Zero downtime deployment strategy integrated into CI/CD."
+          "Delivered clean evaluation accuracy across benchmark datasets.",
+          "Automated repetitive data cleaning and transformation steps."
         ],
         metrics: [
-          { label: "Latency Reduction", value: "94%" },
-          { label: "GPU Load", value: "-45%" },
-          { label: "Active Users", value: "10K+" }
+          { label: "Model Focus", value: "AI / ML" },
+          { label: "Pipeline", value: "Python" }
         ]
       }
     },
     {
       id: "project-02",
-      title: "[PROJECT 02 NAME]",
-      tagline: "[ONE-LINE DESCRIPTION OF PROJECT 02]",
-      description: "AI-powered intelligent platform delivering automated decision pipelines and interactive data visualizations.",
-      problem: "[DESCRIBE THE PROBLEM THAT PROJECT 02 SOLVED]",
-      solution: "[DESCRIBE YOUR SOLUTION AND AI ARCHITECTURE]",
-      technologies: ["Python", "PyTorch", "FastAPI", "TypeScript", "Next.js", "Pinecone"],
-      contribution: "[EXPLAIN YOUR SPECIFIC CONTRIBUTION TO PROJECT 02]",
-      impact: "[HIGHLIGHT IMPACT / RESULT OF PROJECT 02]",
-      githubUrl: "https://github.com/yourusername/project-02",
-      liveUrl: "https://project02-demo.com",
+      title: "Responsive Web & UI Design Experience",
+      tagline: "Interactive, modern web interface with intuitive visual design",
+      description: "A modern web application emphasizing clean component architecture, responsive design, and intuitive user interactions.",
+      problem: "Creating digital interfaces that are not only functional but also engaging, accessible, and visually meaningful.",
+      solution: "Engineered responsive UI structures using HTML5, CSS flexbox/grid, JavaScript, and Tailwind CSS.",
+      technologies: ["HTML5", "CSS3", "JavaScript", "Tailwind CSS", "UI/UX Design"],
+      contribution: "Created responsive component layouts, visual styling system, and smooth interactive web experiences.",
+      impact: "Delivered intuitive user experience across mobile, tablet, and desktop viewports.",
+      githubUrl: "https://github.com/Gunnalakshmi",
+      liveUrl: "#project-demo",
       featured: true,
-      category: "AI / Systems",
+      category: "Frontend & Web",
       caseStudy: {
-        problem: "Unstructured document workflows required hours of manual extraction and context verification across siloed databases.",
-        research: "Benchmarked vector search indexing algorithms, embedding precision vs memory trade-offs, and streaming LLM chunk parse rates.",
-        idea: "Developed an autonomous RAG agent platform with continuous semantic feedback loops and interactive graph visualization.",
-        architecture: "FastAPI Backend -> LangChain Core Engine -> Pinecone Vector Database -> Next.js Edge UI Client.",
-        implementation: "Implemented hybrid semantic-keyword searching, automated document chunking algorithms, and dynamic streaming SSE UI nodes.",
-        innovation: "Created an adaptive context compression layer that boosts answer accuracy while cutting API token consumption.",
+        problem: "Users require intuitive, fast, and visually cohesive web experiences across varied screen sizes.",
+        research: "Researched modern design systems, accessibility contrast rules, and responsive grid layouts.",
+        idea: "Designed a component-driven web experience prioritizing clarity, subtle interactions, and responsive aesthetics.",
+        architecture: "HTML5 Semantic Structure -> Tailwind CSS Utility Layer -> JavaScript Interactive Handlers.",
+        implementation: "Built flexible CSS Grid components, accessible interactive elements, and responsive layout queries.",
+        innovation: "Applied clean visual hierarchy and micro-interactions for enhanced engagement.",
         results: [
-          "Automated 85% of manual extraction operations.",
-          "Lowered query processing time from 4 minutes to 1.2 seconds.",
-          "Token efficiency improved by 38% using dynamic context windowing."
+          "100% responsive experience across mobile and desktop devices.",
+          "Clean visual presentation aligned with user-centric UI design."
         ],
         metrics: [
-          { label: "Accuracy", value: "99.2%" },
-          { label: "Search Time", value: "1.2s" },
-          { label: "Token Savings", value: "38%" }
-        ]
-      }
-    },
-    {
-      id: "project-03",
-      title: "[PROJECT 03 NAME]",
-      tagline: "[ONE-LINE DESCRIPTION OF PROJECT 03]",
-      description: "Immersive 3D interactive web product showcase engineered for seamless cross-device performance.",
-      problem: "[DESCRIBE THE PROBLEM FOR PROJECT 03]",
-      solution: "[DESCRIBE THE CREATIVE & 3D SOLUTION]",
-      technologies: ["Three.js", "React Three Fiber", "GLSL Shaders", "GSAP", "Tailwind CSS"],
-      contribution: "[EXPLAIN YOUR CONTRIBUTION TO PROJECT 03]",
-      impact: "[HIGHLIGHT IMPACT / RESULT OF PROJECT 03]",
-      githubUrl: "https://github.com/yourusername/project-03",
-      liveUrl: "https://project03-demo.com",
-      featured: true,
-      category: "3D / Creative",
-      caseStudy: {
-        problem: "Traditional 3D web experiences suffered low frame rates (<24fps) on mobile browsers and heavy initial bundle loads (>15MB).",
-        research: "Analyzed Draco mesh compression, WebGL instanced rendering techniques, and adaptive Level-of-Detail (LOD) scene switches.",
-        idea: "Built a custom R3F pipeline featuring dynamic asset streaming and custom GLSL fragment shaders for realistic lighting.",
-        architecture: "Vite SPA -> Custom GLSL Shader Pipeline -> R3F Adaptive Canvas -> Web Audio API Engine.",
-        implementation: "Optimized geometry draw calls, integrated post-processing bloom shaders, and wrote custom parallax camera physics.",
-        innovation: "Achieved 60fps locked rendering on mobile GPUs through custom geometry instancing and dynamic texture compression.",
-        results: [
-          "Reduced asset payload from 18MB to under 2.4MB.",
-          "Maintained stable 60 FPS across 95% of mobile hardware tested.",
-          "Awarded featured digital experience recognition."
-        ],
-        metrics: [
-          { label: "Frame Rate", value: "60 FPS" },
-          { label: "Payload Size", value: "2.4MB" },
-          { label: "Load Time", value: "<1.5s" }
+          { label: "Layout", value: "Responsive" },
+          { label: "UX Rating", value: "Intuitive" }
         ]
       }
     }
@@ -365,114 +364,67 @@ export const PORTFOLIO_DATA: {
   experiences: [
     {
       id: "exp-01",
-      company: "[COMPANY / ORGANIZATION NAME 01]",
-      role: "[YOUR ROLE / TITLE]",
-      location: "[LOCATION / REMOTE]",
-      duration: "[DATES / PRESENT]",
+      company: "AI/ML & Tech Explorations",
+      role: "Engineering Student & Developer",
+      location: "Faridabad, Haryana",
+      duration: "Present",
       responsibilities: [
-        "[RESPONSIBILITY 1 - Lead architectural decisions and frontend/backend feature delivery]",
-        "[RESPONSIBILITY 2 - Optimize system performance, CI/CD automated deployment, and unit testing]",
-        "[RESPONSIBILITY 3 - Collaborate with cross-functional teams, UI designers, and product stakeholders]"
+        "Observing real-world technical problems and exploring AI/ML and software solutions.",
+        "Developing machine learning pipelines in Python using NumPy, Pandas, Scikit-learn, and OpenCV.",
+        "Building responsive, intuitive web interfaces using HTML, CSS, JavaScript, and modern styling tools."
       ],
       achievements: [
-        "[KEY ACHIEVEMENT 1 - Measurable speed or scale improvement achieved]",
-        "[KEY ACHIEVEMENT 2 - Key product feature or architecture milestone delivered]"
+        "Built practical machine learning and computer vision experiments.",
+        "Created engaging web user experiences driven by curiosity and problem solving."
       ],
-      technologies: ["TypeScript", "React", "Node.js", "AWS", "Docker", "Tailwind CSS"]
-    },
-    {
-      id: "exp-02",
-      company: "[COMPANY / ORGANIZATION NAME 02]",
-      role: "[YOUR ROLE / TITLE]",
-      location: "[LOCATION / REMOTE]",
-      duration: "[DATES]",
-      responsibilities: [
-        "[RESPONSIBILITY 1 - Developed resilient web applications and API integrations]",
-        "[RESPONSIBILITY 2 - Engineered interactive features and scalable database schemas]",
-        "[RESPONSIBILITY 3 - Maintained high code quality standards through code reviews and automated tests]"
-      ],
-      achievements: [
-        "[KEY ACHIEVEMENT 1 - Delivered high-impact platform upgrade ahead of schedule]",
-        "[KEY ACHIEVEMENT 2 - Reduced server response latencies across core API endpoints]"
-      ],
-      technologies: ["Python", "FastAPI", "React", "PostgreSQL", "Redis"]
+      technologies: ["Python", "Machine Learning", "JavaScript", "HTML/CSS", "Tailwind CSS", "Git"]
     }
   ],
 
   experiments: [
     {
       id: "lab-01",
-      title: "Procedural Quantum Field Shader",
-      category: "GLSL / WebGL Graphics",
+      title: "Interactive Quantum Particle Field",
+      category: "Creative Technology",
       status: "Live Sandbox",
-      description: "Interactive real-time procedural particle simulation testing custom fragment shaders, raymarching, and magnetic cursor field distortion.",
-      technologies: ["Three.js", "GLSL", "React Three Fiber"],
-      githubUrl: "https://github.com/yourusername/quantum-field-lab",
+      description: "Real-time canvas particle simulation testing interactive physics and responsive cursor movement.",
+      technologies: ["HTML5 Canvas", "JavaScript", "Vector Physics"],
+      githubUrl: "https://github.com/Gunnalakshmi",
       demoUrl: "#lab-demo",
       interactiveType: "shader"
     },
     {
       id: "lab-02",
-      title: "Neural Node Gravity Sandbox",
-      category: "Artificial Intelligence & Physics",
+      title: "Computer Vision & Detection Sandbox",
+      category: "Artificial Intelligence",
       status: "Experimental",
-      description: "Visual simulation of interconnected neural weights reacting dynamically to user input forces and real-time gravity attractors.",
-      technologies: ["Canvas2D", "Vector Physics", "TypeScript"],
-      githubUrl: "https://github.com/yourusername/neural-node-sandbox",
+      description: "Exploration of image classification and face detection routines using Python and OpenCV.",
+      technologies: ["Python", "OpenCV", "NumPy"],
+      githubUrl: "https://github.com/Gunnalakshmi",
       demoUrl: "#lab-demo",
       interactiveType: "nodes"
-    },
-    {
-      id: "lab-03",
-      title: "Autonomous Agent Workflow Graph",
-      category: "LLM Orchestration",
-      status: "Prototype",
-      description: "Visual node graph simulator illustrating asynchronous agent communication pathways and state machine branching.",
-      technologies: ["React Flow", "LangChain", "WebSockets"],
-      githubUrl: "https://github.com/yourusername/agent-workflow-lab",
-      demoUrl: "#lab-demo",
-      interactiveType: "physics"
     }
   ],
 
   achievements: [
     {
       id: "ach-01",
-      title: "[ACHIEVEMENT OR AWARD TITLE 01]",
-      category: "Award",
+      title: "AI/ML Engineering Foundation",
+      category: "Milestone",
       year: "2024",
-      organization: "[ORGANIZATION / COMPETITION NAME]",
-      description: "[DESCRIBE THE RECOGNITION, COMPETITION WIN, OR ACCOMPLISHMENT]",
-      credentialUrl: "https://example.com/credential"
-    },
-    {
-      id: "ach-02",
-      title: "[CERTIFICATION OR MILESTONE 02]",
-      category: "Certification",
-      year: "2023",
-      organization: "[ISSUING BODY / INSTITUTION]",
-      description: "[DESCRIBE THE CERTIFICATION, SPECIFIC SKILLS VALIDATED, OR HIGHLIGHT]",
-      credentialUrl: "https://example.com/certification"
-    },
-    {
-      id: "ach-03",
-      title: "[TECHNICAL PUBLICATION OR HACKATHON WIN 03]",
-      category: "Publication",
-      year: "2023",
-      organization: "[PUBLISHER / EVENT NAME]",
-      description: "[DESCRIBE THE RESEARCH PAPER, TECHNICAL BLOG POST, OR HACKATHON WIN]",
-      credentialUrl: "https://example.com/publication"
+      organization: "Academic Studies",
+      description: "Developing strong core foundations in Artificial Intelligence, Machine Learning algorithms, and Frontend Development."
     }
   ],
 
   education: [
     {
-      degree: "[DEGREE NAME - e.g. Bachelor of Science in Computer Science]",
-      institution: "[INSTITUTION / UNIVERSITY NAME]",
-      duration: "[DURATION - e.g. 2019 - 2023]",
+      degree: "AI/ML Engineering Studies",
+      institution: "University / Academic Institution",
+      duration: "Present",
       details: [
-        "Focused on Distributed Systems, Computer Graphics, and Algorithms.",
-        "Graduated with Honors / Top Percentile Project Recognition."
+        "Focused on Machine Learning, Deep Learning, Natural Language Processing, and Computer Vision.",
+        "Exploring Frontend Development, Web Experiences, and Creative Technology."
       ]
     }
   ]

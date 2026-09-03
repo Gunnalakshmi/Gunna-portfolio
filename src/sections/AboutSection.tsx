@@ -12,10 +12,10 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 const stats = [
-  { label: 'Engineering Experience', value: '5+ YRS' },
-  { label: 'Production Products Built', value: '20+' },
-  { label: 'System Uptime Target', value: '99.9%' },
-  { label: 'Innovation Passions', value: '∞' },
+  { label: 'Engineering Focus', value: 'AI / ML' },
+  { label: 'Creative Interest', value: 'Frontend' },
+  { label: 'Core Approach', value: 'Observe' },
+  { label: 'Mindset', value: 'Build' },
 ];
 
 export const AboutSection: React.FC = () => {

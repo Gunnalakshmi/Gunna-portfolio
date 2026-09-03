@@ -15,31 +15,41 @@ export const HeroSection: React.FC = () => {
       <div className="absolute top-1/2 left-1/3 w-[400px] h-[400px] bg-accent-violet/10 blur-[120px] rounded-full pointer-events-none -z-10" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-        {/* Live Availability Status Pill */}
+        {/* Full Name & Identity Pill */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-surface-glass border border-accent-cyan/30 backdrop-blur-md mb-8 shadow-[0_0_20px_rgba(0,243,255,0.15)]"
+          className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-surface-glass border border-accent-cyan/30 backdrop-blur-md mb-6 shadow-[0_0_20px_rgba(0,243,255,0.15)]"
         >
           <span className="relative flex h-2.5 w-2.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-cyan opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent-cyan"></span>
           </span>
-          <span className="text-xs font-mono tracking-widest text-slate-200 uppercase">
-            {profile.title}
+          <span className="text-xs font-mono tracking-widest text-slate-200 uppercase font-bold">
+            {profile.name} // {profile.title}
           </span>
         </motion.div>
 
-        {/* Cinematic Headline */}
+        {/* Primary Tagline */}
         <motion.h1
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-extrabold tracking-tight text-white leading-[1.1]"
+          className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold tracking-tight text-white leading-[1.15]"
         >
           {profile.heroHeadline.split(' ').map((word, i) => (
-            <span key={i} className={word === 'REALITY.' || word === 'IDEAS' ? 'text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan via-blue-400 to-accent-purple inline-block' : 'inline-block mr-3'}>
+            <span
+              key={i}
+              className={
+                word.toLowerCase().includes('observe') ||
+                word.toLowerCase().includes('understand') ||
+                word.toLowerCase().includes('build') ||
+                word.toLowerCase().includes('solution')
+                  ? 'text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan via-blue-400 to-accent-purple inline-block mr-2'
+                  : 'inline-block mr-2'
+              }
+            >
               {word}{' '}
             </span>
           ))}

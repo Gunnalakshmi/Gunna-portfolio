@@ -112,14 +112,35 @@ export const ContactSection: React.FC = () => {
                 </a>
 
                 <a
-                  href={profile.socials.resume}
+                  href={profile.socials.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={playClick}
                   onMouseEnter={playHover}
-                  className="px-3.5 py-2 rounded-xl bg-accent-purple/10 border border-accent-purple/40 text-accent-purple hover:bg-accent-purple/20 text-xs font-mono flex items-center gap-2 transition-all"
+                  className="px-3.5 py-2 rounded-xl bg-surface-light/40 border border-white/10 text-slate-300 hover:text-white hover:border-accent-cyan/40 text-xs font-mono flex items-center gap-2 transition-all"
                 >
-                  <FileText className="w-4 h-4" />
-                  <span>Resume</span>
+                  <Sparkles className="w-4 h-4 text-pink-400" />
+                  <span>Instagram</span>
+                  <ArrowUpRight className="w-3 h-3 text-slate-500" />
                 </a>
+
+                <a
+                  href={profile.socials.phone}
+                  onClick={playClick}
+                  onMouseEnter={playHover}
+                  className="px-3.5 py-2 rounded-xl bg-surface-light/40 border border-white/10 text-slate-300 hover:text-white hover:border-accent-cyan/40 text-xs font-mono flex items-center gap-2 transition-all"
+                >
+                  <Terminal className="w-4 h-4 text-accent-cyan" />
+                  <span>Phone</span>
+                </a>
+
+                <span
+                  title="Resume will be available soon"
+                  className="px-3.5 py-2 rounded-xl bg-accent-purple/10 border border-accent-purple/30 text-slate-400 text-xs font-mono flex items-center gap-2 cursor-not-allowed opacity-80"
+                >
+                  <FileText className="w-4 h-4 text-accent-purple" />
+                  <span>Resume (Upcoming)</span>
+                </span>
               </div>
             </div>
           </motion.div>
