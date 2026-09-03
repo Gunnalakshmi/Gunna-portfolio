@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #030307;
+    color: #e2e8f0;
+    font-family: 'Inter', sans-serif;
+  }
+
+  body {
+    overflow-x: hidden;
+    background-color: #030307;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Hide default cursor on desktop devices with pointer support */
+  @media (hover: hover) and (pointer: fine) {
+    body, a, button, [role="button"] {
+      cursor: none !important;
+    }
+    input, textarea, select, [contenteditable="true"] {
+      cursor: text !important;
+    }
+  }
+
+  ::selection {
+    background-color: rgba(0, 243, 255, 0.3);
+    color: #ffffff;
+  }
+}
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030307;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e1e38;
+  border-radius: 4px;
+  border: 2px solid #030307;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00f3ff;
+}
+
+/* Utility to hide scrollbar for horizontal chip bars */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
